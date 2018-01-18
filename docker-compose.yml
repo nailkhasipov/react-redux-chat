@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  react-redux-chat:
+    image: react-redux-chat
+    build: .
+    ports:
+      - 9000:9000
