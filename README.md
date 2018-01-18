@@ -1,1 +1,1 @@
-Websocket Group Chat
+react-redux-chat

@@ -1,8 +1,8 @@
 {
-  "name": "websocket-group-chat",
+  "name": "react-redux-chat",
   "version": "1.0.0",
-  "description": "Websocket Group Chat",
-  "main": "index.js",
+  "description": "react-redux-chat",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
