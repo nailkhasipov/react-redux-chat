@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import {
-  ADD_MESSAGE,
+  SEND_MESSAGE,
   MESSAGE_RECEIVED,
   ADD_USER,
   USERS_LIST
@@ -24,7 +24,13 @@ function users(state = [], action) {
 
 function messages (state = [], action) {
   switch (action.type) {
-    case 'ADD_MESSAGE':
+    case 'SEND_MESSAGE':
+      return [
+        ...state,
+        {
+          text: action.text
+        }
+      ];
     case 'MESSAGE_RECEIVED':
       return state.concat([
         {
