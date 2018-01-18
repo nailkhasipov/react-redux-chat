@@ -22,10 +22,12 @@ const broadcast = (data, ws) => {
 };
 
 wss.on('connection',(ws) => {
+  let index;
   ws.on('message', (message) => {
     const data = JSON.parse(message);
     switch (data.type) {
       case 'ADD_USER': {
+        index = users.length;
         users.push({ name: data.name });
         ws.send(JSON.stringify({
           type: 'USERS_LIST',
@@ -37,16 +39,24 @@ wss.on('connection',(ws) => {
         }, ws);
         break;
       }
-      case 'ADD_MESSAGE':
+      case 'SEND_MESSAGE':
         broadcast({
-          type: 'ADD_MESSAGE',
-          message: data.message,
-          name: data.name
+          type: 'SEND_MESSAGE',
+          text: data.text,
+          author: data.author
         }, ws);
         break;
       default:
         break;
     }
+  });
+
+  ws.on('close', () => {
+    users.splice(index, 1);
+    broadcast({
+      type: 'USERS_LIST',
+      users
+    }, ws);
   });
 
   // opened issue with Chrome 63 https://github.com/websockets/ws/issues/1256

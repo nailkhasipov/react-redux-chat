@@ -1,5 +1,4 @@
 import React from 'react';
-import Modal from './components/Modal';
 import Sidebar from './components/Sidebar';
 import MessageList from './components/MessageList';
 import SendMessage from './components/SendMessage';
@@ -12,7 +11,6 @@ function App() {
         <MessageList />
         <SendMessage />
       </div>
-      <Modal />
     </div>
   );
 }

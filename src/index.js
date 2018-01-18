@@ -1,16 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-
-import {
-  addUser
-} from './actions';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
 import App from './App';
-import chat from './reducers';
+import reducers from './reducers';
+import { setupSocket, handleSendMessage } from './sockets';
 
-let store = createStore(chat);
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(
+  reducers,
+  applyMiddleware(sagaMiddleware)
+);
+
+do {
+  var username = prompt('Pick a username!');
+} while (!username);
+
+const socket = setupSocket(store.dispatch, username);
+sagaMiddleware.run(handleSendMessage, { socket, username });
 
 ReactDOM.render(
   <Provider store={store}>
@@ -18,49 +28,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
-$('#myModal').modal();
-// const username = prompt('Введите имя пользователя');
-// store.dispatch(addUser('test'));
-
-
-
-// const socket = new WebSocket('ws://localhost:9000');
-
-// socket.onopen = () => {
-//   socket.send(JSON.stringify({
-//     type: 'ADD_USER',
-//     name: username
-//   }));
-// };
-
-// socket.onmessage = (event) => {
-//   const data = JSON.parse(event.data)
-//   switch (data.type) {
-//     case 'USERS_LIST':
-//       populateUsers(data.users);
-//       break;
-//     case 'ADD_MESSAGE':
-//       document.querySelector('#message-list').innerHTML += `<li>${data.name}: ${data.message}</li>`;
-//       break;
-//     default:
-//       break;
-//   }
-// };
-
-// function populateUsers(users) {
-//   document.querySelector('#users').innerHTML = '';
-//   users.forEach(user => {
-//     document.querySelector('#users').innerHTML += `<li>${user.name}</li>`;
-//   });
-// }
-
-// function sendMessage() {
-//   const message = document.querySelector('#message').value;
-//   document.querySelector('#message-list').innerHTML += `<li>${username}: ${message}</li>`;
-//   socket.send(JSON.stringify({
-//     type: 'ADD_MESSAGE',
-//     message: message,
-//     name: username
-//   }));
-// }

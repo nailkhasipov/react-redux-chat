@@ -10,10 +10,10 @@ export function sendMessage(text) {
   };
 }
 
-export function messageReceived(message, author) {
+export function messageReceived(text, author) {
   return { 
     type: MESSAGE_RECEIVED,
-    message,
+    text,
     author
   };
 }

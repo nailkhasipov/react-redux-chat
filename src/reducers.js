@@ -28,17 +28,18 @@ function messages (state = [], action) {
       return [
         ...state,
         {
-          text: action.text
+          text: action.text,
+          author: action.author
         }
       ];
     case 'MESSAGE_RECEIVED':
-      return state.concat([
+      return [
+        ...state,
         {
-          message: action.message,
-          author: action.author,
-          id: action.id
+          text: action.text,
+          author: action.author
         }
-      ]);
+      ];
     default:
       return state;
   }

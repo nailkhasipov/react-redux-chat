@@ -1,10 +1,11 @@
+require('babel-polyfill');
 const path = require('path');
 
 const BUILD_DIR = path.resolve(__dirname, 'public');
 const APP_DIR = path.resolve(__dirname, 'src');
 
 module.exports = {
-  entry: `${APP_DIR}/index.js`,
+  entry: ['babel-polyfill', `${APP_DIR}/index.js`],
   devtool: 'inline-source-map',
   output: {
     filename: 'bundle.js',
