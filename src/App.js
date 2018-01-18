@@ -1,31 +1,18 @@
 import React from 'react';
+import Modal from './Modal';
+import { Sidebar } from './Sidebar';
 
 function App() {
   return (
     <div className='container-fluid'>
       <Sidebar />
       <div className='col-md-8'>
-        <MessageList />
-        <AddMessage />
+        {/* <MessageList />
+        <AddMessage /> */}
       </div>
+      <Modal />
     </div>
   );
-}
-
-function Sidebar() {
-  return (
-    <div className="col-md-3 sidebar">
-      <ul></ul>
-    </div>
-  );
-}
-
-function MessageList() {
-  return <ul></ul>;
-}
-
-function AddMessage() {
-  return <div className='add-message'><input type="text" /></div>;
 }
 
 export default App;

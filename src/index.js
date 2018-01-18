@@ -3,15 +3,28 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
+import {
+  addUser
+} from './actions';
+
 import App from './App';
-// import chat from './reducers';
+import chat from './reducers';
+
+let store = createStore(chat);
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 
+$('#myModal').modal();
 // const username = prompt('Введите имя пользователя');
+// store.dispatch(addUser('test'));
+
+
+
 // const socket = new WebSocket('ws://localhost:9000');
 
 // socket.onopen = () => {
