@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>react-redux-chat</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="root"></div>
   <table>
     <tr>
       <td>
@@ -19,47 +22,6 @@
       </td>
     </tr>
   </table>
-  <script>
-    const username = prompt('Введите имя пользователя');
-    const socket = new WebSocket('ws://localhost:9000');
-
-    socket.onopen = () => {
-      socket.send(JSON.stringify({
-        type: 'ADD_USER',
-        name: username
-      }));
-    }
-
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data)
-      switch (data.type) {
-        case 'USERS_LIST':
-          populateUsers(data.users)
-          break
-        case 'ADD_MESSAGE':
-          document.querySelector('#message-list').innerHTML += `<li>${data.name}: ${data.message}</li>`;
-          break
-        default:
-          break
-      }
-    }  
-
-    function populateUsers(users) {
-      document.querySelector('#users').innerHTML = '';
-      users.forEach(user => {
-        document.querySelector('#users').innerHTML += `<li>${user.name}</li>`;
-      });
-    }
-
-    function sendMessage() {
-      const message = document.querySelector('#message').value;
-      document.querySelector('#message-list').innerHTML += `<li>${username}: ${message}</li>`;
-      socket.send(JSON.stringify({
-        type: 'ADD_MESSAGE',
-        message: message,
-        name: username
-      }));
-    }
-  </script>
+  <script src="bundle.js"></script>
 </body>
 </html>
