@@ -1,12 +1,11 @@
-FROM ubuntu:16.04
+FROM node:carbon
 
-RUN apt-get -yqq update
-RUN apt-get -yqq install nodejs npm
-
-WORKDIR /app
-ADD . /app
+WORKDIR /usr/src/app
+COPY package*.json ./
 
 RUN npm install
 
+COPY . .
+
 EXPOSE 9000
-CMD ["node", "app.js"]
+CMD [ "npm", "start" ]
