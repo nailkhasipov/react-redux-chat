@@ -6,7 +6,10 @@ const MessageListComponent = ({ messages }) => {
   return (
     <ul className='message-list'>
       {messages.map(message => (
-        <li>{message.text}</li>
+        <li className='message'>
+          <span><b>{message.author}</b> 16:00</span>
+          <p>{message.text}</p>
+        </li>
       ))}
     </ul>
   );

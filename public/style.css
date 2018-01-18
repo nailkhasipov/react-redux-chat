@@ -1,20 +1,67 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+
 html, body {
   height: 100%;
 }
 
-#root, .container-fluid {
+.no-gutter {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#root, .container-fluid, .row {
   height: 100%;
 }
 
 .sidebar {
   height: 100%;
-  border-right: 1px solid;
+  border-right: 1px solid #ddd;
+  margin-bottom: 0;
+  padding-right: 0;
 }
 
-.send-message {
-  bottom: 0;
-  border-top: 1px solid;
-  height: 40px;
+.sidebar .list-group-item {
+  border-radius: 0;
+  border-right: none;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.main .message-list {
+  height: 100%;
+  margin-bottom: 0;
+  background: url('pattern.png') repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  list-style: none;
+  padding: 15px;
+  overflow: scroll;
+}
+
+.main .message-list .message {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.main .send-message {
+  background: #fff;
+  border-top: 1px solid #ddd;
+  height: 60px;
   width: 100%;
-  position: fixed;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main .send-message .btn {
+  margin-left: 10px;
 }

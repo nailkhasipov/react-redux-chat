@@ -14,9 +14,12 @@ let SendMessage = ({ dispatch }) => {
       dispatch(sendMessage(input.value));
       input.value = '';
     }}>
-      <input type='text' ref={node => {input = node;}} />
-      <button type='submit'>Send</button>
-      <button>Clear</button>
+      <input className='form-control' type='text' ref={node => {input = node;}} />
+      <button className='btn btn-default'>
+        <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        Clear
+      </button>
+      <button className='btn btn-primary' type='submit'>Send</button>
     </form>
   );
 };

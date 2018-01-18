@@ -6,10 +6,12 @@ import SendMessage from './components/SendMessage';
 function App() {
   return (
     <div className='container-fluid'>
-      <Sidebar />
-      <div className='col-md-9'>
-        <MessageList />
-        <SendMessage />
+      <div className="row">
+        <Sidebar />
+        <div className='col-md-9 col-sm-10 col-xs-10 main no-gutter'>
+          <MessageList />
+          <SendMessage />
+        </div>
       </div>
     </div>
   );

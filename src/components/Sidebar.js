@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 const SidebarComponent = ({ users }) => {
   return (
-    <ul className='sidebar col-md-3'>
+    <ul className='sidebar list-group col-sm-2 col-xs-2 col-md-3'>
       {users.map(user => (
-        <li>{user.name}</li>
+        <li className='list-group-item'>{user.name}</li>
       ))}
     </ul>
   );
