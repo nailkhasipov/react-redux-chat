@@ -1,5 +1,5 @@
-React Redux Chat
-================
+React Redux Chat ⚛️
+==================
 
 This is a React chat application powered by WebSocket and Express
 
