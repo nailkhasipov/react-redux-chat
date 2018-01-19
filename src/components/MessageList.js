@@ -2,26 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const MessageListComponent = ({ messages }) => {
-  return (
-    <ul className='message-list'>
-      {messages.map(message => (
-        <li className='message'>
-          <span><b>{message.author}</b> 16:00</span>
-          <p>{message.text}</p>
-        </li>
-      ))}
-    </ul>
+function MessageList(props) {
+  const messages = props.messages.map((message, index) =>
+    <li className='list-group-item' key={index}>
+      <span><b>{message.author}</b> 16:00</span>
+      <p>{message.text}</p>
+    </li>
   );
-};
-
-MessageListComponent.propTypes = {
-  messages: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-};
+  return (
+    <ul className='message-list'>{messages}</ul>
+  );
+}
 
 const mapStateToProps = state => {
   return {
@@ -29,8 +20,4 @@ const mapStateToProps = state => {
   };
 };
 
-const MessageList = connect(
-  mapStateToProps
-)(MessageListComponent);
-
-export default MessageList;
+export default connect(mapStateToProps)(MessageList);;
