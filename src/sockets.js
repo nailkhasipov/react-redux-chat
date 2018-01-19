@@ -1,9 +1,5 @@
 import { takeEvery } from 'redux-saga/effects';
-import { ADD_USER,
-  SEND_MESSAGE, 
-  USERS_LIST, 
-  messageReceived, 
-  populateUsersList } from './actions';
+import { ADD_USER, SEND_MESSAGE, UPDATE_USERS_LIST, messageReceived, updateUsersList } from './actions';
 
 export const setupSocket = (dispatch, username) => {
   //@TODO move to ENV
@@ -22,8 +18,8 @@ export const setupSocket = (dispatch, username) => {
       case SEND_MESSAGE:
         dispatch(messageReceived(data.text, data.author));
         break;
-      case USERS_LIST:
-        dispatch(populateUsersList(data.users));
+      case UPDATE_USERS_LIST:
+        dispatch(updateUsersList(data.users));
         break;
       default:
         break;

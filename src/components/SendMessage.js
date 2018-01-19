@@ -23,7 +23,8 @@ class SendMessage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(sendMessage(this.state.value));
+    const date = Date.now();
+    this.props.dispatch(sendMessage(this.state.value, date));
     this.setState({value: ''});
   }
 

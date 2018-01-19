@@ -30,11 +30,11 @@ wss.on('connection',(ws) => {
         index = users.length;
         users.push({ name: data.name });
         ws.send(JSON.stringify({
-          type: 'USERS_LIST',
+          type: 'UPDATE_USERS_LIST',
           users
         }));
         broadcast({
-          type: 'USERS_LIST',
+          type: 'UPDATE_USERS_LIST',
           users
         }, ws);
         break;
@@ -43,7 +43,8 @@ wss.on('connection',(ws) => {
         broadcast({
           type: 'SEND_MESSAGE',
           text: data.text,
-          author: data.author
+          author: data.author,
+          date: data.date
         }, ws);
         break;
       default:
@@ -54,7 +55,7 @@ wss.on('connection',(ws) => {
   ws.on('close', () => {
     users.splice(index, 1);
     broadcast({
-      type: 'USERS_LIST',
+      type: 'UPDATE_USERS_LIST',
       users
     }, ws);
   });

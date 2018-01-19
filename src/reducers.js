@@ -1,10 +1,5 @@
 import { combineReducers } from 'redux';
-import {
-  SEND_MESSAGE,
-  MESSAGE_RECEIVED,
-  ADD_USER,
-  USERS_LIST
-} from './actions';
+import { SEND_MESSAGE, MESSAGE_RECEIVED, ADD_USER, UPDATE_USERS_LIST } from './actions';
 
 function users(state = [], action) {
   switch (action.type) {
@@ -15,7 +10,7 @@ function users(state = [], action) {
           name: action.name
         }
       ];
-    case USERS_LIST:
+    case UPDATE_USERS_LIST:
       return action.users;
     default:
       return state;
@@ -29,7 +24,8 @@ function messages (state = [], action) {
         ...state,
         {
           text: action.text,
-          author: action.author
+          author: action.author,
+          date: action.date
         }
       ];
     case 'MESSAGE_RECEIVED':
@@ -37,7 +33,8 @@ function messages (state = [], action) {
         ...state,
         {
           text: action.text,
-          author: action.author
+          author: action.author,
+          date: action.date
         }
       ];
     default:
