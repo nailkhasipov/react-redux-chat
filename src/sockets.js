@@ -31,7 +31,6 @@ export const setupSocket = (dispatch, username) => {
 
 export const handleSendMessage = function* handleSendMessage(params) {
   yield takeEvery(SEND_MESSAGE, (action) => {
-    console.log(action);
     params.socket.send(JSON.stringify(action));
   });
 };

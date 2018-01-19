@@ -52,6 +52,10 @@ html, body {
   margin-top: 15px;
 }
 
+.main .send-message .input-wrapper {
+  width: 100%;
+}
+
 .main .send-message {
   background: #fff;
   border-top: 1px solid #ddd;

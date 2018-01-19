@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { HotKeys } from 'react-hotkeys';
 import { sendMessage } from '../actions';
 
 class SendMessage extends React.Component {
@@ -7,9 +8,28 @@ class SendMessage extends React.Component {
     super(props);
     this.state = {value: ''};
 
+    this.handlers = {};
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClear = this.handleClear.bind(this);
+  }
+
+  componentDidMount() {
+    this.handlers = {
+      'ctrl+r': (event) => this._clearMessage(),
+      'enter': (event) => this._sendMessage()
+    };
+  }
+
+  _clearMessage() {
+    this.setState({value: ''});
+  }
+
+  _sendMessage() {
+    const date = Date.now();
+    this.props.dispatch(sendMessage(this.state.value, this.props.username, date));
+    this._clearMessage();
   }
 
   handleChange(event) {
@@ -18,20 +38,20 @@ class SendMessage extends React.Component {
 
   handleClear(event) {
     event.preventDefault();
-    this.setState({value: ''});
+    this._clearMessage();
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const date = Date.now();
-    this.props.dispatch(sendMessage(this.state.value, this.props.username, date));
-    this.setState({value: ''});
+    this._sendMessage();
   }
 
   render() {
     return (
       <form className='send-message' onSubmit={this.handleSubmit}>
-        <input className='form-control' type='text' value={this.state.value} onChange={this.handleChange} required='required' />
+        <HotKeys handlers={this.handlers} className='input-wrapper'>
+          <input className='form-control' type='text' value={this.state.value} onChange={this.handleChange} required='required' />
+        </HotKeys>
         <button className='btn btn-default' onClick={this.handleClear}>
           <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
           Clear
