@@ -1,5 +1,16 @@
 import { combineReducers } from 'redux';
-import { SEND_MESSAGE, MESSAGE_RECEIVED, ADD_USER, UPDATE_USERS_LIST } from './actions';
+import { LOGIN, SEND_MESSAGE, MESSAGE_RECEIVED, ADD_USER, UPDATE_USERS_LIST } from './actions';
+
+function app(state = {}, action) {
+  switch (action.type) {
+    case LOGIN:
+      return Object.assign({}, state, {
+        username: action.username
+      });
+    default:
+      return state;
+  }
+}
 
 function users(state = [], action) {
   switch (action.type) {
@@ -43,6 +54,7 @@ function messages (state = [], action) {
 }
 
 const chat = combineReducers({
+  app,
   messages,
   users
 });

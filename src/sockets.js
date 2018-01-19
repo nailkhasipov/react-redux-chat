@@ -16,7 +16,7 @@ export const setupSocket = (dispatch, username) => {
     const data = JSON.parse(event.data);
     switch (data.type) {
       case SEND_MESSAGE:
-        dispatch(messageReceived(data.text, data.author));
+        dispatch(messageReceived(data.text, data.author, data.date));
         break;
       case UPDATE_USERS_LIST:
         dispatch(updateUsersList(data.users));
@@ -31,7 +31,7 @@ export const setupSocket = (dispatch, username) => {
 
 export const handleSendMessage = function* handleSendMessage(params) {
   yield takeEvery(SEND_MESSAGE, (action) => {
-    action.author = params.username;
+    console.log(action);
     params.socket.send(JSON.stringify(action));
   });
 };

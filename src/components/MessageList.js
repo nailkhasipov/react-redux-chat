@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function MessageList(props) {
   const messages = props.messages.map((message, index) =>
-    <li className='list-group-item' key={index}>
+    <li className='message' key={index}>
       <span><b>{message.author}</b> {new Date(message.date).toLocaleString().split(' ')[1]}</span>
       <p>{message.text}</p>
     </li>

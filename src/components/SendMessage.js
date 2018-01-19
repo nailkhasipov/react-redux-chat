@@ -24,7 +24,7 @@ class SendMessage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const date = Date.now();
-    this.props.dispatch(sendMessage(this.state.value, date));
+    this.props.dispatch(sendMessage(this.state.value, this.props.username, date));
     this.setState({value: ''});
   }
 
@@ -42,4 +42,10 @@ class SendMessage extends React.Component {
   }
 };
 
-export default connect()(SendMessage);
+const mapStateToProps = state => {
+  return {
+    username: state.app.username
+  };
+};
+
+export default connect(mapStateToProps)(SendMessage);

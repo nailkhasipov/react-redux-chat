@@ -1,12 +1,21 @@
+export const LOGIN = 'LOGIN';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const MESSAGE_RECEIVED = 'MESSAGE_RECEIVED';
 export const ADD_USER = 'ADD_USER';
 export const UPDATE_USERS_LIST = 'UPDATE_USERS_LIST';
 
-export function sendMessage(text, date) {
+export function login(username) {
+  return { 
+    type: LOGIN,
+    username
+  };
+}
+
+export function sendMessage(text, author, date) {
   return { 
     type: SEND_MESSAGE,
     text,
+    author,
     date
   };
 }
