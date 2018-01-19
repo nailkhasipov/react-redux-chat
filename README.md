@@ -3,7 +3,7 @@ React Redux Chat
 
 This is a React chat application powered by WebSocket and Express
 
-![NSGIF] (https://dl.dropboxusercontent.com/s/cvey73an53y9v6q/about.gif?dl=0)
+![Chat Preview](https://dl.dropboxusercontent.com/s/cvey73an53y9v6q/about.gif?dl=0)
 
 ---
 
